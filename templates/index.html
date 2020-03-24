@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  {% block title %}<title>Insled</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <!-- Добавление дополнительного статического CSS файла -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<h2>{{title}}</h2>
+<a href="{% url 'login' %}"><button>Личный кабинет</button></a><br/><br/>
+<p><a href="{% url 'eventFilter' pk=1 %}">Любая дата</a></p>
+<p><a href="{% url 'eventFilter' pk=2 %}">Сегодня</a></p>
+<p><a href="{% url 'eventFilter' pk=3 %}">Последние 7 дней</a></p>
+<p><a href="{% url 'eventFilter' pk=4 %}">Последний месяц</a></p>
+<p><a href="{% url 'eventFilter' pk=5 %}">Последний год</a></p>
+<p><a href="{% url 'eventFilter' pk=6 %}">Будущие мероприятия</a></p>
+{% for i in object_list %}
+    <h3>{{i.event_name}}</h3>
+    <p>Ссылка в vk: <a href = "{{i.vk_link}}"> {{i.vk_link}}</a> </p>
+    <p>Дата проведения: {{i.data_begin}}</p>
+{% endfor %}
+</p>
+</body>
+</html>
